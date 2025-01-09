@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: pnpm install && pnpm build
+      - run: echo "BUILD_TIMESTAMP=$(date +%s)" >> $GITHUB_ENV
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: release
+          folder: dist
+          tag: ${{ env.BUILD_TIMESTAMP }}

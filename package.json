@@ -1,0 +1,17 @@
+{
+  "name": "sobot-router-script",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js email pwd 726",
+    "build": "rm -rf ./dist && bun build ./index.js --outfile dist/sobot-router-script --compile --minify"
+  },
+  "engines": {
+    "node": ">=20.x",
+    "pnpm": "9.x"
+  },
+  "dependencies": {
+    "bun": "^1.1.42",
+    "puppeteer": "^23.11.1",
+    "typescript": "^5.7.2"
+  }
+}
